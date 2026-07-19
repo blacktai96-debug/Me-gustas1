@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un pequeño secreto 💌</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffd5e5, #ffeef6, #d9f4ff);
+
+        }
+
+        .card {
+
+            width: 420px;
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, .15);
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        h1 {
+
+            color: #ff4f87;
+            margin-bottom: 15px;
+
+        }
+
+        p {
+
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+
+        }
+
+        button {
+
+            padding: 14px 35px;
+            font-size: 18px;
+            border: none;
+            border-radius: 40px;
+            background: #ff4f87;
+            color: white;
+            cursor: pointer;
+            transition: .3s;
+
+        }
+
+        button:hover {
+
+            transform: scale(1.08);
+
+        }
+
+        #resultado {
+
+            display: none;
+            animation: aparecer .8s;
+
+        }
+
+        .numero {
+
+            font-size: 42px;
+            font-weight: bold;
+            margin: 25px 0;
+            color: #ff4f87;
+
+        }
+
+        .frase {
+
+            font-size: 18px;
+            color: #666;
+
+        }
+
+        @keyframes aparecer {
+
+            from {
+
+                opacity: 0;
+                transform: scale(.6);
+
+            }
+
+            to {
+
+                opacity: 1;
+                transform: scale(1);
+
+            }
+
+        }
+
+        /* Confeti */
+
+        .confeti {
+
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            top: -20px;
+            animation: caer linear forwards;
+
+        }
+
+        @keyframes caer {
+
+            to {
+
+                transform: translateY(110vh) rotate(720deg);
+
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div id="inicio">
+
+            <h1>💌 Un pequeño secreto...</h1>
+
+            <p>
+
+                Este QR lleva a mi número de whatsapp<br><br>
+
+                Si lo abres tendras que enviarme un mensaje
+
+            </p>
+
+            <button onclick="mostrar()">
+                Sí, quiero
+            </button>
+
+        </div>
+
+        <div id="resultado">
+
+            <h1>💌 Tu mensaje ha sido recibido</h1>
+
+            <p>Este es mi número:</p>
+
+            <div class="numero">
+                960552095
+            </div>
+
+            <p class="frase">
+
+                Espero recibir tu mensaje. 💖<br><br>
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function mostrar() {
+
+            document.getElementById("inicio").style.display = "none";
+            document.getElementById("resultado").style.display = "block";
+
+            confeti();
+
+        }
+
+        function confeti() {
+
+            const colores = ["#ff4f87", "#ffd54f", "#7ed6ff", "#8affc1", "#c792ff"];
+
+            for (let i = 0; i < 180; i++) {
+
+                let c = document.createElement("div");
+
+                c.className = "confeti";
+
+                c.style.left = Math.random() * 100 + "vw";
+
+                c.style.background = colores[Math.floor(Math.random() * colores.length)];
+
+                c.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+                c.style.opacity = Math.random();
+
+                document.body.appendChild(c);
+
+                setTimeout(() => {
+
+                    c.remove();
+
+                }, 6000);
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
